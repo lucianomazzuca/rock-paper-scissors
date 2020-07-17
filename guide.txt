@@ -1,0 +1,31 @@
+1. Computer makes a play.
+    1. Choose randomly between rock, paper and scissors.
+2. Player makes a play.
+    1. Prompt player's choice.
+        Must be insensitive case
+3. Function plays a round.
+    1. Takes two parameters: player selection and computer selection.
+    2. Return the winner of the round as a string.
+        1.  If player selection equals computer selection then
+                print Tie
+            If player choice equals to rock 
+                If computer choice equals to paper then
+                    Print computer wins
+                else If computer choice equals to Scissors then
+                    print player winds.
+            if player choice equals to paper
+                if  computer choice equals to rock then
+                    Print player wins
+                else if computer choice equals to scissors then
+                    print computer wins
+            if player choice equals to scissors
+                if computer choice equals to rock then
+                    print computer wins
+                else if computer choice equals to paper then
+                    print player wins
+4.  Function game() must repeat a round 5 times
+    Call function computerSelection
+    Call function playerSelection
+    Call function playRound
+5. print score of the game
+    

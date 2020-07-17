@@ -9,28 +9,88 @@
 
 <script>
 
-    function computerPlay(){
+    function computerSelection(){
         let plays = ['rock', 'paper', 'scissors'];
         return plays[Math.floor(Math.random() * plays.length)]
     }
 
-    let computerSelection = computerPlay();
-
-    console.log(computerSelection);
-
-    let playerSelection = 'rock';
+    function playerSelection(){
+       return prompt("What do you choose?", ).toLowerCase();
+    }
 
 
     function playRound(playerSelection, computerSelection){
-        switch(true){
-            case playerSelection == computerSelection:
-                console.log('Tie');
-                break;
-            
+        if(playerSelection == computerSelection){
+            return "It's a tie"
+        }
+        else if(playerSelection == 'rock'){
+            if(computerSelection== 'paper'){
+                scoreComputer++
+                return "You lose: paper beats rock"
+            }
+            else{
+                scorePlayer++
+                return "You win: rock beats scissors"
+            }
+        }
+        else if(playerSelection == 'paper'){
+            if(computerSelection == 'rock'){
+                scorePlayer++
+                return "You win: paper beats rock"
+            }
+            else{
+                scoreComputer++
+                return "You lose: scissors beats paper"
+            }
+        }
+        else if(playerSelection == 'scissors'){
+            if(computerSelection == 'rock'){
+                scoreComputer++
+                return "You lose: rock beats scissors"
+            }
+            else{
+                scorePlayer++
+                return "You win: scissors beats paper"
+            }
+        }
+        else{
+            return "You didn't choose a valid option"
         }
     }
 
-    console.log(playRound(playerSelection, computerSelection));
+    let scorePlayer = 0;
+    let scoreComputer = 0;
+
+    function score(){
+        if(scorePlayer > scoreComputer){
+            return 'You win: ' + scorePlayer + '-' + scoreComputer;
+        }
+        else if(scorePlayer == scoreComputer){
+            return "It's a tie : " + scorePlayer + '-' +scoreComputer;
+        }
+        else{
+            return 'You lose: ' + scorePlayer + '-' +scoreComputer;
+        }
+    }
+
+    function game(){
+        let round1 = playRound(playerSelection(), computerSelection())
+        console.log('Round 1: ' + round1)
+        let round2 = playRound(playerSelection(), computerSelection())
+        console.log('Round 2: ' + round2)
+        let round3 = playRound(playerSelection(), computerSelection())
+        console.log('Round 3: ' + round3)
+        let round4 = playRound(playerSelection(), computerSelection())
+        console.log('Round 4: ' + round4)
+        let round5 = playRound(playerSelection(), computerSelection())
+        console.log('Round 5: ' + round5)
+
+
+        console.log(score())
+    }
+
+    game()
+
 
 </script>
 
