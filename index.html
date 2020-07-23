@@ -3,23 +3,48 @@
 <head>
     <title>Rock Paper Scissors</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
+    <h1>Welcome to the rock paper scissors game</h1>
+    <h2></h2>
+
+    <div class = "player-choice">
+        <button class="choice" id="rock">Rock</button>
+        <button class="choice" id="paper">Paper</button>
+        <button class="choice" id="scissors">Scissors</button>
+    </div>
+
+    <div class = "score">
+        <div class= "player">
+            <p id="scorePlayer" >Player score : 0</p>
+            <p id="choicePlayer">You choose: </p>
+        </div>
+
+        <div class ="computer">
+            <p id="scoreComputer">Computer score: 0</p>
+            <p id="choiceComputer">Computer choose: </p>
+        </div>
+    </div>
+
+    <div class = "result">
+
+    </div>
+
 <script>
 
-    function computerSelection(){
+    let scorePlayer = 0;
+    let scoreComputer = 0;
+ 
+    //Randomize computer's choice
+    let computerSelection = function(){
         let plays = ['rock', 'paper', 'scissors'];
         return plays[Math.floor(Math.random() * plays.length)]
     }
 
-    function playerSelection(){
-       return prompt("What do you choose?", ).toLowerCase();
-    }
-
-
-    function playRound(playerSelection, computerSelection){
+    let playRound = function(playerSelection, computerSelection){
         if(playerSelection == computerSelection){
             return "It's a tie"
         }
@@ -58,39 +83,46 @@
         }
     }
 
-    let scorePlayer = 0;
-    let scoreComputer = 0;
 
-    function score(){
-        if(scorePlayer > scoreComputer){
-            return 'You win: ' + scorePlayer + '-' + scoreComputer;
+
+
+    const btnPlayer = document.querySelectorAll('button.choice');
+    const playerDiv = document.querySelector('#scorePlayer');
+    const computerDiv = document.querySelector('#scoreComputer');
+    const roundResult = document.createElement('div');
+    const choicePLayer = document.querySelector('#choicePlayer');
+    const choiceComputer = document.querySelector('#choiceComputer')
+    const resultContainer = document.querySelector('.result');
+
+
+    btnPlayer.forEach((button) => {
+        button.addEventListener('click', () => {
+            let computer = computerSelection();
+            let result = playRound(button.id, computer)
+            playerDiv.textContent = "Player score : " + scorePlayer;
+            computerDiv.textContent = 'Computer score : ' + scoreComputer;
+            roundResult.textContent = result;
+            resultContainer.appendChild(roundResult);
+
+            choicePLayer.textContent = "You choose: " + button.id;
+            choiceComputer.textContent = "Computer choose: " + computer;
+
+            finalScore(scoreComputer, scorePlayer);
+        })
+    })
+
+    function finalScore(scoreComputer, scorePlayer){
+        let resultDiv = document.createElement('div');
+
+        if(scoreComputer == 5){
+            resultDiv.innerText = `You lose ${scoreComputer} - ${scorePlayer}`
         }
-        else if(scorePlayer == scoreComputer){
-            return "It's a tie : " + scorePlayer + '-' +scoreComputer;
+        else if(scorePlayer == 5) {
+            resultDiv.innerText = `You win ${scorePlayer} - ${scoreComputer}`
         }
-        else{
-            return 'You lose: ' + scorePlayer + '-' +scoreComputer;
-        }
+
+        return resultContainer.appendChild(resultDiv);
     }
-
-    function game(){
-        let round1 = playRound(playerSelection(), computerSelection())
-        console.log('Round 1: ' + round1)
-        let round2 = playRound(playerSelection(), computerSelection())
-        console.log('Round 2: ' + round2)
-        let round3 = playRound(playerSelection(), computerSelection())
-        console.log('Round 3: ' + round3)
-        let round4 = playRound(playerSelection(), computerSelection())
-        console.log('Round 4: ' + round4)
-        let round5 = playRound(playerSelection(), computerSelection())
-        console.log('Round 5: ' + round5)
-
-
-        console.log(score())
-    }
-
-    game()
-
 
 </script>
 

@@ -1,0 +1,21 @@
+div.player {
+    display: inline-block;
+}
+
+div.computer{
+    display: inline-block;
+    margin-left: 100px;
+}
+
+
+div.score{
+    margin-top: 30px;
+}
+
+div.result{
+    position: block;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+
